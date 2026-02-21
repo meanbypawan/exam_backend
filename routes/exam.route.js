@@ -1,0 +1,11 @@
+import express from "express";
+import { createExam, examCodeList, examList, removeExam, generatePassword, changeStatus } from "../controller/exam.controller.js";
+import { body } from "express-validator";
+const router = express.Router();
+router.post("/create",body("code","please enter exam code").notEmpty(),createExam);
+router.get("/code",examCodeList);
+router.get("/list",examList);
+router.post("/remove",removeExam);
+router.post("/generate-password",generatePassword);
+router.post("/change-status",changeStatus);
+export default router;

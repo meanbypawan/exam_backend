@@ -16,7 +16,7 @@ export const generatePassword = async (request, response, next) => {
         let { code } = request.body;
         let password = generateRandomString();
         await User.updateMany({ code }, { password });
-        return response.status(200).json({ message: "Password generated successfully" });
+        return response.status(200).json({ message: "Password generated successfully", password });
     }
     catch (err) {
         return response.status(500).json({ error: "Internal Server Error" });

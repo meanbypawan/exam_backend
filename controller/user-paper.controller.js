@@ -26,13 +26,11 @@ export const generateQuestionPaper = async (request, response, next) => {
     const userId = request.body.userId;
     let user = await UserPaper.findOne({ userId: userId });
     if (!user) {
-      let hindiQuestions = await getRandomQuestionByCategory("Hindi", 10);
       let englishQuestions = await getRandomQuestionByCategory("English", 10);
-      let gkQuestions = await getRandomQuestionByCategory("General Knowledge", 10);
       let basicComputerQuestions = await getRandomQuestionByCategory("Computer Basic", 10);
       let logicalResoningQuestion = await getRandomQuestionByCategory("Logical Resoning", 30);
       let aptitudeQuestions = await getRandomQuestionByCategory("Quantitative Aptitude", 30);
-      let paper = new UserPaper({ userId: userId, questionsList: [{ "English": englishQuestions, "Hindi": hindiQuestions, "General Knowledge": gkQuestions, "Computer Basic": basicComputerQuestions, "Quantitative Aptitude": aptitudeQuestions, "Logical Resoning": logicalResoningQuestion }] });
+      let paper = new UserPaper({ userId: userId, questionsList: [{ "English": englishQuestions, "Computer Basic": basicComputerQuestions, "Quantitative Aptitude": aptitudeQuestions, "Logical Resoning": logicalResoningQuestion }] });
       await paper.save();
       return response.status(200).json(paper.toJSON());
     }

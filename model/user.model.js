@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema({
     },
     score:{
         type: Number
+    },
+    College_Name:{
+        type: String,
+        default:""
     }
 });
 
